@@ -26,7 +26,7 @@ jobs:
         run: bundle exec rake test
 
       - name: Verify the gem builds
-        run: gem build omarchy.gemspec
+        run: gem build omagem.gemspec
 
   lint:
     name: RuboCop

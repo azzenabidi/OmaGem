@@ -27,7 +27,7 @@ gem "omagem"
 Or install directly from the repository:
 
 ```ruby
-gem "omarchy", github: "azzenabidi/OmaGem", branch: "main"
+gem "omagem", github: "azzenabidi/OmaGem", branch: "main"
 ```
 
 And then execute:

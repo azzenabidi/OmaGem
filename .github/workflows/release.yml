@@ -31,8 +31,8 @@ jobs:
           touch "$HOME/.gem/credentials"
           chmod 600 "$HOME/.gem/credentials"
           printf -- "---\n:rubygems_api_key: ${RUBYGEMS_API_KEY}\n" > "$HOME/.gem/credentials"
-          gem build omarchy.gemspec
-          gem push omarchy-*.gem
+          gem build omagem.gemspec
+          gem push omagem-*.gem
         env:
           RUBYGEMS_API_KEY: ${{ secrets.RUBYGEMS_API_KEY }}
 
