@@ -18,10 +18,18 @@ Designed to be used both in scripts and inside a Rails application.
 
 ## Installation
 
+### As a dependency (Bundler)
+
 Add this line to your application's Gemfile:
 
 ```ruby
 gem "omagem"
+```
+
+Then execute:
+
+```bash
+bundle install
 ```
 
 Or install directly from the repository:
@@ -30,10 +38,41 @@ Or install directly from the repository:
 gem "omagem", github: "azzenabidi/OmaGem", branch: "main"
 ```
 
-And then execute:
+### Standalone (scripts and one-off use)
+
+If you just want the DSL in a plain Ruby script or from the terminal:
 
 ```bash
-bundle install
+gem install omagem
+```
+
+Verify the gem is installed and loadable:
+
+```bash
+ruby -e 'require "omagem"; puts OmaGem::VERSION'
+```
+
+## Uninstalling
+
+### Remove from a Bundler project
+
+```bash
+bundle remove omagem
+```
+
+(Or delete the `gem "omagem"` line from your Gemfile and run
+`bundle install`.)
+
+### Uninstall the gem
+
+```bash
+gem uninstall omagem
+```
+
+To remove it from every RubyGems environment on the machine:
+
+```bash
+gem uninstall omagem --all
 ```
 
 ## Usage
@@ -190,6 +229,75 @@ Pass a fake (recording) client to build a config without touching the system:
 config = OmaGem::Config.new(client: OmaGem::Client::Fake.new)
 config.theme "catppuccin"
 config.executed # => [["theme", "set", "catppuccin"]]
+```
+
+## Use cases
+
+### 1. Machine bootstrap / dotfiles as code
+
+Declare the desired state of a fresh Omarchy install in a single script you
+can re-run on any machine:
+
+```ruby
+OmaGem.run do
+  theme "catppuccin"
+  add_packages "docker", "git", "lazygit"
+  add_packages "yay-bin", aur: true
+  install_service "tailscale"
+  default_terminal "kitty"
+  update(yes: true)
+end
+```
+
+### 2. Rails admin panel
+
+Expose theme, package, and service management through a web UI. Because
+`OmaGem.run` returns the `Config`, controllers apply an operation and
+immediately inspect the result:
+
+```ruby
+class ThemesController < ApplicationController
+  def update
+    result = OmaGem.run { theme params[:theme] }
+    render json: { current: result.current_theme }
+  end
+end
+```
+
+### 3. Scheduled automation
+
+Drive background jobs — switches your environment on a schedule or keeps the
+system up to date without touching the terminal:
+
+```ruby
+class NightlightJob < ApplicationJob
+  def perform(on:)
+    OmaGem.run { nightlight(on ? :on : :off) }
+  end
+end
+```
+
+### 4. Dry-run / preview
+
+Preview exactly which commands a config would run, without mutating the
+system, using the recording fake client (see
+[Reusable, non-destructive configuration](#reusable-non-destructive-configuration)):
+
+```ruby
+config = OmaGem::Config.new(client: OmaGem::Client::Fake.new)
+config.theme "tokyo-night"
+config.add_packages "docker"
+config.executed
+# => [["theme", "set", "tokyo-night"], ["pkg", "add", "docker"]]
+```
+
+### 5. Remote management
+
+Ship an apply script to an Omarchy box and run it over SSH:
+
+```bash
+scp apply.rb omarchy-box:
+ssh omarchy-box "ruby apply.rb"
 ```
 
 ## Errors
