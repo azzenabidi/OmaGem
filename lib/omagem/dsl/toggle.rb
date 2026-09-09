@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Omarchy
+module OmaGem
   module DSL
     # Toggle Omarchy features on/off: nightlight, touchpad, Bluetooth, etc.
     module Toggle

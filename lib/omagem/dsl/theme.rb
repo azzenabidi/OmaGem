@@ -2,7 +2,7 @@
 
 require_relative '../errors'
 
-module Omarchy
+module OmaGem
   module DSL
     # Theme management: apply, list, install, remove, refresh, backgrounds.
     module Theme

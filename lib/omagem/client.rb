@@ -2,13 +2,13 @@
 
 require 'open3'
 
-module Omarchy
+module OmaGem
   # Wraps the `omarchy` CLI. It shells out to the single `omarchy` binary and
   # exposes the resulting output, whether the command succeeded, and the exit
   # status. Errors raised by the command are captured rather than thrown.
   #
   # The class is designed to be subclassed or stubbed in tests (see
-  # Omarchy::Client::Fake) so the DSL can be exercised without a live system.
+  # OmaGem::Client::Fake) so the DSL can be exercised without a live system.
   class Client
     Result = Struct.new(:success, :stdout, :stderr, :status, keyword_init: true) do
       def success?

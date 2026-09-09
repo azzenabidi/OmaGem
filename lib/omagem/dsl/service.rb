@@ -2,7 +2,7 @@
 
 require_relative '../errors'
 
-module Omarchy
+module OmaGem
   module DSL
     # Install/manage optional software, services, apps, browsers, editors,
     # terminals, development environments, and gaming.

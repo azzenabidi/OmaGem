@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Omarchy
+module OmaGem
   module DSL
     # The status bar: which bar and widget layout is used, plus widget layout.
     module Bar

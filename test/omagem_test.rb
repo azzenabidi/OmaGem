@@ -3,7 +3,7 @@
 require_relative 'test_helper'
 
 class ThemeDslTest < Minitest::Test
-  include OmarchyTestHelpers
+  include OmaGemTestHelpers
 
   def test_theme_applies
     c = dsl { theme 'catppuccin' }
@@ -23,7 +23,7 @@ class ThemeDslTest < Minitest::Test
 end
 
 class PackageDslTest < Minitest::Test
-  include OmarchyTestHelpers
+  include OmaGemTestHelpers
 
   def test_add_packages
     c = dsl { add_packages 'docker', 'git' }
@@ -42,7 +42,7 @@ class PackageDslTest < Minitest::Test
 end
 
 class ServiceDslTest < Minitest::Test
-  include OmarchyTestHelpers
+  include OmaGemTestHelpers
 
   def test_install_service
     c = dsl { install_service 'tailscale' }
@@ -50,7 +50,7 @@ class ServiceDslTest < Minitest::Test
   end
 
   def test_install_service_invalid
-    assert_raises(Omarchy::ArgumentError) { dsl { install_service 'nope' } }
+    assert_raises(OmaGem::ArgumentError) { dsl { install_service 'nope' } }
   end
 
   def test_install_browser
@@ -64,12 +64,12 @@ class ServiceDslTest < Minitest::Test
   end
 
   def test_install_terminal_invalid
-    assert_raises(Omarchy::ArgumentError) { dsl { install_terminal 'notmap' } }
+    assert_raises(OmaGem::ArgumentError) { dsl { install_terminal 'notmap' } }
   end
 end
 
 class SystemDslTest < Minitest::Test
-  include OmarchyTestHelpers
+  include OmaGemTestHelpers
 
   def test_update_yes
     c = dsl { update(yes: true) }
@@ -95,7 +95,7 @@ class SystemDslTest < Minitest::Test
 end
 
 class ToggleBarPluginDslTest < Minitest::Test
-  include OmarchyTestHelpers
+  include OmaGemTestHelpers
 
   def test_toggle
     c = dsl { nightlight :on }
@@ -108,7 +108,7 @@ class ToggleBarPluginDslTest < Minitest::Test
   end
 
   def test_bar_position_invalid
-    assert_raises(Omarchy::ArgumentError) { dsl { bar_position 'middle' } }
+    assert_raises(OmaGem::ArgumentError) { dsl { bar_position 'middle' } }
   end
 
   def test_add_plugin

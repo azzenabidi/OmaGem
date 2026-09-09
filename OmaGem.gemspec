@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require_relative 'lib/omarchy/version'
+require_relative 'lib/omagem/version'
 
 Gem::Specification.new do |spec|
   spec.name        = 'omagem'
-  spec.version     = Omarchy::VERSION
+  spec.version     = OmaGem::VERSION
   spec.authors     = ['azzen']
   spec.summary     = 'Ruby DSL to configure and manage Omarchy Linux systems'
   spec.description = 'A tiny Ruby DSL that wraps the `omarchy` CLI so you can manage ' \

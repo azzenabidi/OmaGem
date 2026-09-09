@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Omarchy
+module OmaGem
   module DSL
     # Misc: reminders, screen capture, launch app, focus app, default agent.
     module Misc

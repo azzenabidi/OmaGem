@@ -2,7 +2,7 @@
 
 require_relative '../errors'
 
-module Omarchy
+module OmaGem
   module DSL
     # Package management: add / drop Arch and AUR packages, plus queries.
     module Package

@@ -39,9 +39,9 @@ bundle install
 ## Usage
 
 ```ruby
-require "omarchy"
+require "omagem"
 
-Omarchy.run do
+OmaGem.run do
   theme "catppuccin"
   background "/home/me/Pictures/forest.png"
 
@@ -62,11 +62,11 @@ Omarchy.run do
 end
 ```
 
-Every method is documented on `Omarchy::Config`. The block is evaluated
+Every method is documented on `OmaGem::Config`. The block is evaluated
 against a fresh `Config`, so you can call any DSL method directly:
 
 ```ruby
-config = Omarchy.run do
+config = OmaGem.run do
   theme "catppuccin"
   add_packages "git"
 end
@@ -173,12 +173,12 @@ focus_app "org.mozilla.firefox"
 
 ## From a Rails app
 
-Because `Omarchy.run` returns the `Config` (and records every executed
+Because `OmaGem.run` returns the `Config` (and records every executed
 command), you can invoke it from a controller, job, or service and inspect
 the results:
 
 ```ruby
-result = Omarchy.run { theme params[:theme] }
+result = OmaGem.run { theme params[:theme] }
 flash[:notice] = result.current_theme
 ```
 
@@ -187,16 +187,16 @@ flash[:notice] = result.current_theme
 Pass a fake (recording) client to build a config without touching the system:
 
 ```ruby
-config = Omarchy::Config.new(client: Omarchy::Client::Fake.new)
+config = OmaGem::Config.new(client: OmaGem::Client::Fake.new)
 config.theme "catppuccin"
 config.executed # => [["theme", "set", "catppuccin"]]
 ```
 
 ## Errors
 
-- `Omarchy::CommandFailed` — a command exited non-zero (set `ignore_errors: true` in `Omarchy.run` to raise nothing and keep going).
-- `Omarchy::CommandNotFound` — the `omarchy` binary isn't on `PATH` (`ensure_command!`).
-- `Omarchy::ArgumentError` — an invalid enum value (e.g. an unknown terminal).
+- `OmaGem::CommandFailed` — a command exited non-zero (set `ignore_errors: true` in `OmaGem.run` to raise nothing and keep going).
+- `OmaGem::CommandNotFound` — the `omarchy` binary isn't on `PATH` (`ensure_command!`).
+- `OmaGem::ArgumentError` — an invalid enum value (e.g. an unknown terminal).
 
 ## Development
 

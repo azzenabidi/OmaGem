@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Omarchy
+module OmaGem
   module DSL
     # Shell plugin and bar-widget management.
     module Plugin

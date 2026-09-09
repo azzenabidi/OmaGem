@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-module Omarchy
-  # Base class for all Omarchy::DSL errors.
+module OmaGem
+  # Base class for all OmaGem::DSL errors.
   class Error < StandardError; end
 
   # Raised when the `omarchy` CLI is not available on the system.

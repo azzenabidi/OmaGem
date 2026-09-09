@@ -3,7 +3,7 @@
 require_relative 'client'
 require_relative 'errors'
 
-module Omarchy
+module OmaGem
   # The DSL surface. A Config instance exposes all the management methods
   # (theme, package, service, system, ...). The methods are defined in
   # feature modules mixed in below, so the DSL is easy to extend and keep
@@ -14,7 +14,7 @@ module Omarchy
   class Config
     attr_reader :client
 
-    def initialize(client: Omarchy::Client.new, ignore_errors: false)
+    def initialize(client: OmaGem::Client.new, ignore_errors: false)
       @client = client
       @ignore_errors = ignore_errors
       @executed = []
@@ -24,7 +24,7 @@ module Omarchy
     # argument array.
     attr_reader :executed
 
-    # Run an Omarchy command and return the Omarchy::Client::Result.
+    # Run an Omarchy command and return the OmaGem::Client::Result.
     # Records the call and validates the exit status unless ignore_errors.
     def run(*args)
       @executed << args
@@ -67,7 +67,7 @@ module Omarchy
       client.run('theme', 'list').stdout.lines.map(&:strip).reject(&:empty?)
     end
 
-    # Raise Omarchy::ArgumentError unless value is in the allowed list.
+    # Raise OmaGem::ArgumentError unless value is in the allowed list.
     def validate_in!(value, allowed, label)
       return if allowed.include?(value.to_s)
 
@@ -86,12 +86,12 @@ require_relative 'dsl/toggle'
 require_relative 'dsl/snapshot'
 require_relative 'dsl/misc'
 
-Omarchy::Config.include(Omarchy::DSL::Theme)
-Omarchy::Config.include(Omarchy::DSL::Package)
-Omarchy::Config.include(Omarchy::DSL::Service)
-Omarchy::Config.include(Omarchy::DSL::System)
-Omarchy::Config.include(Omarchy::DSL::Bar)
-Omarchy::Config.include(Omarchy::DSL::Plugin)
-Omarchy::Config.include(Omarchy::DSL::Toggle)
-Omarchy::Config.include(Omarchy::DSL::Snapshot)
-Omarchy::Config.include(Omarchy::DSL::Misc)
+OmaGem::Config.include(OmaGem::DSL::Theme)
+OmaGem::Config.include(OmaGem::DSL::Package)
+OmaGem::Config.include(OmaGem::DSL::Service)
+OmaGem::Config.include(OmaGem::DSL::System)
+OmaGem::Config.include(OmaGem::DSL::Bar)
+OmaGem::Config.include(OmaGem::DSL::Plugin)
+OmaGem::Config.include(OmaGem::DSL::Toggle)
+OmaGem::Config.include(OmaGem::DSL::Snapshot)
+OmaGem::Config.include(OmaGem::DSL::Misc)

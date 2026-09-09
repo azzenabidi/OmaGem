@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-module Omarchy
+module OmaGem
   module DSL
     # System snapshots via snapper.
     module Snapshot
