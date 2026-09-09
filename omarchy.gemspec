@@ -3,7 +3,7 @@
 require_relative 'lib/omarchy/version'
 
 Gem::Specification.new do |spec|
-  spec.name        = 'omarchy'
+  spec.name        = 'omagem'
   spec.version     = Omarchy::VERSION
   spec.authors     = ['azzen']
   spec.summary     = 'Ruby DSL to configure and manage Omarchy Linux systems'

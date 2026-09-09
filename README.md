@@ -1,7 +1,7 @@
 # Omarchy
 
 [![CI](https://github.com/azzenabidi/OmaGem/actions/workflows/ci.yml/badge.svg)](https://github.com/azzenabidi/OmaGem/actions/workflows/ci.yml)
-[![Gem Version](https://img.shields.io/gem/v/omarchy)](https://rubygems.org/gems/omarchy)
+[![Gem Version](https://img.shields.io/gem/v/omagem)](https://rubygems.org/gems/omagem)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
 A small Ruby DSL for configuring and managing [Omarchy](https://omarchy.org/)
@@ -21,7 +21,7 @@ Designed to be used both in scripts and inside a Rails application.
 Add this line to your application's Gemfile:
 
 ```ruby
-gem "omarchy"
+gem "omagem"
 ```
 
 Or install directly from the repository:
@@ -204,16 +204,6 @@ config.executed # => [["theme", "set", "catppuccin"]]
 bundle install
 bundle exec rake test
 bundle exec rubocop
-```
-
-## Publishing
-
-Push a `v*` tag to trigger the release workflow (tests, `gem build`,
-`gem push`, GitHub release):
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
 ```
 
 ## License
