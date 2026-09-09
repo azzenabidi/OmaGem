@@ -1,4 +1,4 @@
-# Omarchy
+# OmaGem
 
 [![CI](https://github.com/azzenabidi/OmaGem/actions/workflows/ci.yml/badge.svg)](https://github.com/azzenabidi/OmaGem/actions/workflows/ci.yml)
 [![Gem Version](https://img.shields.io/gem/v/omagem)](https://rubygems.org/gems/omagem)
