@@ -121,3 +121,54 @@ class ToggleBarPluginDslTest < Minitest::Test
     assert_equal %w[snapshot create], c.executed.first
   end
 end
+
+class GitDslTest < Minitest::Test
+  include OmaGemTestHelpers
+
+  # Returns a plugin catalog so git_plugins can parse something.
+  class JsonClient < FakeClient
+    def run(*args)
+      return super unless args == %w[plugin list --json]
+
+      OmaGem::Client::Result.new(
+        success: true,
+        stdout: '[' \
+                '{"id":"local.neon","firstParty":false,"name":"Neon"},' \
+                '{"id":"omarchy.clock","firstParty":true,"name":"Clock"}' \
+                ']',
+        stderr: '',
+        status: 0
+      )
+    end
+  end
+
+  def test_valid_git_url
+    c = dsl { valid_git_url? 'https://example.com/repo.git' }
+    assert_equal %w[git url check https://example.com/repo.git], c.client.calls.first
+    assert c.valid_git_url?('https://example.com/repo.git')
+  end
+
+  def test_git_themes_query
+    client = FakeClient.new
+    config = OmaGem::Config.new(client: client)
+    config.git_themes
+    assert_equal %w[theme extras], client.calls.first
+  end
+
+  def test_git_plugins_only_third_party
+    client = JsonClient.new
+    config = OmaGem::Config.new(client: client)
+    assert_equal ['local.neon'], config.git_plugins
+  end
+
+  def test_update_git_installs
+    c = dsl { update_git_installs }
+    assert_equal %w[theme update], c.executed[0]
+    assert_equal %w[plugin update --yes], c.executed[1]
+  end
+
+  def test_update_git_installs_prompt
+    c = dsl { update_git_installs(yes: false) }
+    assert_equal %w[plugin update], c.executed[1]
+  end
+end

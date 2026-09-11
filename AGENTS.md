@@ -67,6 +67,7 @@ lib/omagem/
     system.rb                  #   System (update, defaults, font, channel, power)
     bar.rb                     #   Bar (layout, position, widget placement)
     plugin.rb                  #   Plugin (clone/enable/disable/list)
+    git.rb                     #   Git (track/update git-installed themes & plugins)
     toggle.rb                  #   Toggle (nightlight, touchpad, idle, ...)
     snapshot.rb                #   Snapshot (create/restore)
     misc.rb                    #   Misc (screenshot, screenrecord, reminder, focus)

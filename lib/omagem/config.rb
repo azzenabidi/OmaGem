@@ -82,6 +82,7 @@ require_relative 'dsl/service'
 require_relative 'dsl/system'
 require_relative 'dsl/bar'
 require_relative 'dsl/plugin'
+require_relative 'dsl/git'
 require_relative 'dsl/toggle'
 require_relative 'dsl/snapshot'
 require_relative 'dsl/misc'
@@ -92,6 +93,7 @@ OmaGem::Config.include(OmaGem::DSL::Service)
 OmaGem::Config.include(OmaGem::DSL::System)
 OmaGem::Config.include(OmaGem::DSL::Bar)
 OmaGem::Config.include(OmaGem::DSL::Plugin)
+OmaGem::Config.include(OmaGem::DSL::Git)
 OmaGem::Config.include(OmaGem::DSL::Toggle)
 OmaGem::Config.include(OmaGem::DSL::Snapshot)
 OmaGem::Config.include(OmaGem::DSL::Misc)

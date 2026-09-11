@@ -6,8 +6,9 @@
 
 A small Ruby DSL for configuring and managing [Omarchy](https://omarchy.org/)
 Linux systems: themes, backgrounds, packages, services, the shell bar,
-plugins, toggles, snapshots, and system operations. It wraps the single
-`omarchy` CLI, so it stays in sync with the real command surface.
+plugins, toggles, snapshots, git-installed software, and system operations.
+It wraps the single `omarchy` CLI, so it stays in sync with the real command
+surface.
 
 Designed to be used both in scripts and inside a Rails application.
 
@@ -199,6 +200,19 @@ idle :toggle
 bar_visible :toggle
 notification_silencing       # do-not-disturb
 ```
+
+### Git-installed software
+
+```ruby
+valid_git_url? "https://...git" # true when git can clone the URL
+git_themes                      # names of user themes cloned from git
+git_plugins                     # IDs of third-party plugins added from git
+
+update_git_installs             # pull every git theme + plugin (yes: true skips prompts)
+update_git_installs(yes: false) # keep the plugin update confirmation prompt
+```
+
+Everything installed through the DSL from a git URL — `install_theme`, `add_plugin` — is already captured in `config.executed`. The Git methods above track what is currently git-managed and keep it up to date.
 
 ### Misc
 
